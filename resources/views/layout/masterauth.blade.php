@@ -34,7 +34,7 @@
 </script>
 <!-- /END GA --></head>
 <body id="kt_body">
-  <div class="bg-body">
+  
     @yield('content')
   </div>
     

@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\TrxController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -28,9 +31,20 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resources([
         'menu' => MenuController::class,
+        'order' => OrderController::class,
+        'trx' => TrxController::class,
     ]);
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/order/updatestat', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('transaction', [TrxController::class, 'store'])->name('member.transaction.store');
+    Route::get('transaction/storeagain/{code}', [TrxController::class, 'storeagain'])->name('member.transaction.storeagain');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/save', [ProfileController::class, 'save'])->name('profile.save');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

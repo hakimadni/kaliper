@@ -7,10 +7,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Cart;
+use App\Models\Profile;
+use App\Models\Transaction;
 
 class User extends \TCG\Voyager\Models\User
 {
     use HasApiTokens, HasFactory, Notifiable;
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 
     /**
      * The attributes that are mass assignable.

@@ -1,10 +1,39 @@
 					
+					{{-- <div class="footer mt-10 py-4 d-flex flex-lg-column" id="kt_footer">
+						<!--begin::Container-->
+						<div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<!--begin::Copyright-->
+							<div class="text-dark order-2 order-md-1">
+								<span class="text-muted fw-bold me-1">2021©</span>
+								<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
+							</div>
+							<!--end::Copyright-->
+							<!--begin::Menu-->
+							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
+								<li class="menu-item">
+									<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+								</li>
+								<li class="menu-item">
+									<a href="https://keenthemes.com/support" target="_blank" class="menu-link px-2">Support</a>
+								</li>
+								<li class="menu-item">
+									<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
+								</li>
+							</ul>
+							<!--end::Menu-->
+						</div>
+						<!--end::Container-->
+					</div> --}}
+					</div>
+					<!--end::Testimonials Section-->
+					
 				</div>
 				<!--end::Container-->
 		  </div>
 		  <!--end::Post-->
 		</div>
 		<!--end::Root-->
+		
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
 			<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
@@ -32,7 +61,20 @@
 		<script src="{{asset('js/custom/landing.js')}}"></script>
 		<script src="{{asset('js/custom/pages/company/pricing.js')}}"></script>
 		<!--end::Page Custom Javascript-->
-		<!--end::Javascript-->
+		
+		<!--begin::Page Vendors Javascript(used by this page)-->
+		<link href="{{asset('/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css"/>
+		<script src="{{asset('/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+		<!--end::Page Vendors Javascript-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="{{asset('/js/custom/apps/customers/list/export.js')}}"></script>
+		<script src="{{asset('/js/custom/apps/customers/list/list.js')}}"></script>
+		<script src="{{asset('/js/custom/apps/customers/add.js')}}"></script>
+		<script src="{{asset('/js/custom/widgets.js')}}"></script>
+		<script src="{{asset('/js/custom/apps/chat/chat.js')}}"></script>
+		<script src="{{asset('/js/custom/modals/create-app.js')}}"></script>
+		<script src="{{asset('/js/custom/modals/upgrade-plan.js')}}"></script>
+		<!--end::Page Custom Javascript-->
 	</body>
 	<!--end::Body-->
 </html>

@@ -3,6 +3,7 @@
     Register
 @endsection
 @section('content')
+<div class="bg-body">
     <!--begin::Main-->
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Authentication - Sign-up -->
@@ -28,7 +29,7 @@
 							<!--end::Heading-->
 							<!--begin::Action-->
 							<a type="button" class="btn btn-light-primary fw-bolder w-100 mb-10" href="{{route('redirect')}}">
-                            <img alt="Logo" src="{{asset('media/svg/brand-logos/google-icon.svg')}}" class="h-20px me-3" />Sign in with Google</a>
+                            <img alt="Logo" src="{{asset('media/svg/brand-logos/google-icon.svg')}}" class="h-20px me-3" />Log in with Google</a>
 							<!--end::Action-->
 							<!--begin::Separator-->
 							<div class="d-flex align-items-center mb-10">
@@ -86,7 +87,7 @@
 								</div>
 								<!--end::Wrapper-->
 								<!--begin::Hint-->
-								<div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
+								<div class="text-dark">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
 								<!--end::Hint-->
 							</div>
 							<!--end::Input group=-->
@@ -117,7 +118,7 @@
 						</form>
 						<!--end::Form-->
                         <!--begin::Link-->
-								<div class="text-gray-400 text-center fw-bold fs-4 pt-10">Already have an account?
+								<div class="text-dark text-center fw-bold fs-4 pt-10">Already have an account?
                                     <a href="/login" class="link-primary fw-bolder">Sign in here</a></div>
                                     <!--end::Link-->
 					</div>

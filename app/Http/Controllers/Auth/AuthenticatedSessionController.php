@@ -47,7 +47,7 @@ class AuthenticatedSessionController extends Controller
         
                 
                 \auth()->login($create, true);
-                return redirect()->route('home');
+                return redirect()->route('dashboard');
             }
 
         } catch (\Exception $e) {

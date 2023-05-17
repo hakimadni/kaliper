@@ -3,7 +3,7 @@
 Menu
 @endsection
 @section('content')
-<a href="/cart" class="floating-button">
+<a href="/cart" class="floating-button btm ctr" id="indexToCart">
   <div class="card bg-kaliper w-300px w-xl-400px rounded-3 shadow">
     <div class="my-2 mx-5">
       <div class="row align-items-center">
@@ -17,10 +17,10 @@ Menu
             </svg>
           </span>
           <!--end::Svg Icon-->
-          <h3 class="my-auto ms-3"><span>5</span> Items</h3>
+          <h3 class="my-auto ms-3"><span>{{$totalItem}}</span> Items</h3>
         </div>
         <div class="col text-end d-flex justify-content-end">
-          <h3 class="my-auto me-3">Rp. 75,000</h3>
+          <h3 class="my-auto me-3">Rp. {{number_format($totalPrice) }}</h3>
           <i class="fas fa-angle-right display-2 text-dark"></i>
         </div>
         
@@ -29,24 +29,47 @@ Menu
   </div>
 </a>
 
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      Menu
+    </div>
+  </div>
+  <div class="card-body">
+    @foreach($categories as $category)
 
-<div class="row row-cols-2 row-cols-md-5 row-cols-lg-6">
-    @for($x = 1; $x <= 10; $x++)
-    <div class="col mb-4">
-        <a href="/menu/detail">
-            <div class="card position-relative">
-                <img src="/media/avatars/blank.png" class="card-img" alt="">
-                <div class="card-img-overlay d-flex align-items-end">
-                  <div class="bottom-10 w-100 text-center">
-                    <h5 class="card-title">Kopi {{$x}} </h5>
-                    <p class="card-text fs-6 text-dark">Rp. 20,500</p>
+    <h2 class="mb-5">{{ $category->name }}</h2>
+    {{-- <ul>
+        @foreach($productsByCategory[$category->id] as $product)
+            <li>{{ $product->name }}</li>
+        @endforeach
+    </ul> --}}
+    <div class="row row-cols-2 row-cols-md-5 row-cols-lg-6">
+      @foreach($productsByCategory[$category->id] as $product)
+      <div class="col mb-4 mh-200px mw-200px">
+          <a href="/menu/{{ $product->id }}">
+              <div class="card position-relative mw-150px mh-150px mw-lg-200px mh-lg-200px">
+                <div class="mw-150px mh-150px mw-lg-200px mh-lg-200px rounded"  style="position: relative; overflow: hidden;">
+                    <img class="img-fluid"
+                    src="{{ asset('storage/' . $product->image) }}" 
+                    alt="">
+                </div>
+                  <div class="card-img-overlay d-flex align-items-end">
+                    <div class="bottom-10 w-100 text-center">
+                      <h5 class="card-title text-light">{{ $product->name }}</h5>
+                      <p class="card-text fs-6 btn-light rounded">Rp. {{number_format($product->harga) }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-        </a>
+          </a>
+      </div>
+      @endforeach
     </div>
-    @endfor
+@endforeach
   </div>
+</div>
+
+
 
   
   

@@ -1,158 +1,235 @@
 
 .transparent{
-    background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 .scroll-y {
-    overflow-y: scroll;
-    overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
+
+
+
+
 .bg-body {
-    background-image: url("../media/Post 4.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100%;
+  background-image: url("../media/Post 4.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .bg-img {
-    min-height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .text-kaliper {
-    color: #f0ce37;
+  color: #f0ce37;
 }
 .img1 {
-    background-image: url("../media/DSC00324.JPG");
+  background-image: url("../media/DSC00324.JPG");
 }
 .img2 {
-    background-image: url("../media/DSC00360.JPG");
+  background-image: url("../media/DSC00360.JPG");
 }
 .img3 {
-    background-image: url("../media/DSC00372.JPG");
+  background-image: url("../media/DSC00372.JPG");
 }
 
 
 body,html  {
-    width: 100%;
-    min-height: 100%;
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-  }
-  .scroll-downs {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    margin-bottom: 150px;
-    
-    width :34px;
-    height: 55px;
-  }
-  .mousey {
-    width: 3px;
-    padding: 10px 15px;
-    height: 35px;
-    border: 2px solid #fff;
-    border-radius: 25px;
-    opacity: 0.65;
-    box-sizing: content-box;
-  }
-  .scroller {
-    width: 3px;
-    height: 10px;
-    border-radius: 25%;
-    background-color: #fff;
-    animation-name: scroll;
-    animation-duration: 2.2s;
-    animation-timing-function: cubic-bezier(.15,.41,.69,.94);
-    animation-iteration-count: infinite;
-  }
-  @keyframes scroll {
-    0% { opacity: 0; }
-    10% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(15px); opacity: 0;}
-  }
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+.scroll-downs {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  margin-bottom: 150px;
+  
+  width :34px;
+  height: 55px;
+}
+.mousey {
+  width: 3px;
+  padding: 10px 15px;
+  height: 35px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  opacity: 0.65;
+  box-sizing: content-box;
+}
+.scroller {
+  width: 3px;
+  height: 10px;
+  border-radius: 25%;
+  background-color: #fff;
+  animation-name: scroll;
+  animation-duration: 2.2s;
+  animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+  animation-iteration-count: infinite;
+}
+@keyframes scroll {
+  0% { opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0;}
+}
 
 .bg-white-transparent-75 {
-    background: hsla(0, 0%, 100%, 0.65);
-  }
+  background: hsla(0, 0%, 100%, 0.65);
+}
 
 .floating-button {
   position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 2; /* Increase the z-index value to make the button appear above the drawer */
+}
+
+
+
+.footer {
+bottom: 0;
+}
+.bot{
+bottom: 20px;
+transform: translateX(-50%);
+}
+.ctr{
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
 }
 
 .bg-kaliper{
-  background-color: #ffe76d;
+background-color: #ffe76d;
+}
+.btn-kaliper{
+background-color: #ffe76d;
+color: #000;
+border: none;
+font-size: 16px;
+padding: 15px 30px;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+.btn-kaliper:hover{
+background-color: #bb9c00;
+color: #fff;
 }
 
-.floating-button a {
-  background-color: #ffe76d;
-  color: #000;
-  border: none;
-  font-size: 20px;
-  padding: 15px 30px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.floating-button #indexToCart {
+background-color: #ffe76d;
+color: #000;
+border: none;
+font-size: 20px;
+padding: 15px 30px;
+border-radius: 5px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+cursor: pointer;
+transition: background-color 0.3s ease;
 }
 
-.floating-button a:hover {
-  color: #fff;
-  background-color: #bb9c00;
+.floating-button #indexToCart:hover {
+color: #fff;
+background-color: #bb9c00;
 }
 
 .carousel-item img {
-  object-fit: cover;
-  height: 400px;
-  width: 100%;
+object-fit: cover;
+height: 400px;
+width: 100%;
 }
 
 @media (max-width: 576px) {
-  .carousel-item img {
-    height: 250px;
-  }
+.carousel-item img {
+  height: 250px;
+}
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato:400,500,600,700&display=swap');
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Lato', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
 }
 
 .radio {
-  display: inline-flex;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+display: inline-flex;
+overflow: hidden;
+border-radius: 10px;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 }
 .radLabel{
-  margin: 5px;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-family: sans-serif;
-  color: #009578;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: background 0.3s;
+margin: 5px;
+padding: 8px 14px;
+font-size: 14px;
+font-family: sans-serif;
+color: #009578;
+cursor: pointer;
+border-radius: 10px;
+transition: background 0.3s;
 }
 .radInput {
-  display: none;
+display: none;
 }
 .radInput:checked + .radLabel{
-  background: #009578;
-  color: white;
-  border-radius: 10px;
+background: #009578;
+color: white;
+border-radius: 10px;
 }
 
+.product-image {
+max-width: 80px;
+height: auto;
+}
+
+.product-name {
+font-weight: bold;
+}
+
+.product-price {
+color: #f00;
+}
+
+.product-quantity {
+width: 80px;
+text-align: center;
+}
+
+.product-subtotal {
+color: #f00;
+font-weight: bold;
+}
+
+.checkout-btn {
+margin-top: 20px;
+float: right;
+}
+
+.img-cart{
+height: 50px;
+width: 50px;
+}
+
+#Quantity {
+font-size: 16px;
+}
+.fill-container {
+  width: 100%;
+  object-fit: cover;
+}

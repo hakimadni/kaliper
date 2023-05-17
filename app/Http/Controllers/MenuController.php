@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
+use DB;
 class MenuController extends Controller
 {
     /**
@@ -13,7 +17,22 @@ class MenuController extends Controller
      */
     public function index()
     {
-    return view('user.menu.index');
+        $user = Auth::user();
+
+    $categories = Category::all();
+    $productsByCategory = Product::with('category')
+        ->orderBy('category_id')
+        ->get()
+        ->groupBy('category_id');
+
+        $totalItem = Cart::where('user_id', auth()->id())
+        ->groupBy('user_id')->count();
+
+        $totalPrice = Cart::where('user_id', $user->id) // filter cart items by user ID
+        ->join('products', 'carts.product_id', '=', 'products.id') // join the products table
+        ->sum(DB::raw('products.harga * carts.qty')); // calculate the total price\
+
+    return view('user.Menu.index', compact('categories', 'productsByCategory', 'totalPrice','totalItem'));
     }
 
     /**
@@ -43,10 +62,12 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
-    return view('user.menu.detail');
-    }
+    public function show($id)
+{
+    $product = Product::findOrFail($id);
+    return view('user.Menu.show', ['product' => $product]);
+}
+
 
     /**
      * Show the form for editing the specified resource.
