@@ -45,12 +45,6 @@ class TrxController extends Controller
             'status_id' => 0
         ]);
 
-        // create a new order
-        $order = new Order;
-        $order->user_id = $trx->user_id;
-        $order->transaction_id = $trx->id;
-        $order->save();
-
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         \Midtrans\Config::$isProduction = (bool) env('MIDTRANS_IS_PRODUCTION');
         \Midtrans\Config::$isSanitized = (bool) env('MIDTRANS_IS_SANITIZED');
@@ -109,40 +103,8 @@ class TrxController extends Controller
 
     public function show($id)
     {
-        //
+        $trx = Transaction::find($id);
+        return view('user.trx.show', compact('trx'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

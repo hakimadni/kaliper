@@ -44,6 +44,7 @@ class WebhookController extends Controller
 
 
         if ($status === 'success') {
+            
             if($transaction) {
                 $transaction->update([
                     'status_id' => 1,
@@ -51,6 +52,12 @@ class WebhookController extends Controller
                     'updated_at' => $currentDateTime
                 ]);
             }
+
+            // create a new order
+            $order = new Order;
+            $order->user_id = $transaction->user_id;
+            $order->transaction_id = $transaction->id;
+            $order->save();
 
             $cartItems = Cart::where('user_id', $customer->id)->get();
 

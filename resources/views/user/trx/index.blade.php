@@ -191,7 +191,7 @@ Transaction
                             <!--begin::Payment method=-->
                                 @if ($trx->status_id==0)
                                 <td>
-                                    <div class="btn btn-sm btn-outline-warning">Pending</div>
+                                    <div class="btn btn-sm btn-warning">Pending</div>
                                 </td>
                                 @else
                                 <td data-filter="credit_card">
@@ -215,9 +215,9 @@ Transaction
                             <!--end::Amount=-->
                             <!--begin::Status=-->
                             <td >
-                                @if ($trx->status_id==0 || $trx->status_id==2)
+                                @if ($trx->status_id==0 || $trx->status_id==3)
                                     <div class="btn btn-sm btn-warning">Pending</div>
-                                @elseif ($trx->status_id==3)
+                                @elseif ($trx->status_id==2)
                                     <div class="btn btn-sm btn-danger">Canceled</div>
                                 @else
                                     <div class="btn btn-sm btn-success">Paid</div>
@@ -248,7 +248,7 @@ Transaction
                                     @endif
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="../../demo1/dist/apps/customers/view.html" class="menu-link px-3">View</a>
+                                        <a href="{{route('trx.show', $trx->id)}}" class="menu-link px-3">View</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->

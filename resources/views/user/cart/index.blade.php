@@ -88,14 +88,20 @@ Menu
                         </div>
                     </div>
                 </div>
+                
                 <div class="col ">
                     <div class="row">
                         <p class="fs-4 text-end">Rp. <span class="subt">{{ number_format($cartItem->product->harga * $cartItem->qty) }}</span></p>
                     </div>
                     <div class="row h-30px"></div>
-                    <div class="row text-end">
-                        <a href=""><i class="fas fa-trash fs-1"></i></a>
+                    <div class="row">
+                        <div class="col text-end">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-icon delete-cart-item"><i class="fas fa-trash fs-1"></i></a>
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
           
@@ -179,6 +185,36 @@ Menu
       </script>
 
       <script>
+        $('.delete-cart-item').on('click', function() {
+            var cartItemId = $(this).closest('.cart-item').data('cart-id');
+    
+            $.ajax({
+                url: '{{ route('cart.delete') }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}', 
+                    itemId: cartItemId
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.message
+                    }).then(function() {
+                        // Perform any additional actions after success if needed
+                        // For example, you can reload the page or update the cart summary
+                        location.reload();
+                    });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Failed to delete cart item'
+                    });
+                }
+            });
+        });
         <!-- Update cart item quantity -->
         $(document).on('click', '.minus-btn, .plus-btn', function(e) {
             e.preventDefault();
@@ -250,6 +286,6 @@ Menu
         });
 
       </script>
-      
+    
 
 @endsection

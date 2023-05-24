@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/order/updatestat', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/delete', [CartController::class, 'deleteCartItem'])->name('cart.delete');
     Route::get('transaction', [TrxController::class, 'store'])->name('member.transaction.store');
     Route::get('transaction/storeagain/{code}', [TrxController::class, 'storeagain'])->name('member.transaction.storeagain');
 
@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/save', [ProfileController::class, 'save'])->name('profile.save');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+Route::get('/ty', function () {
+    return view('thank you');
 });
 
 Route::get('/auth/redirect', [AuthenticatedSessionController::class, 'redirectToProvider'])->name('redirect');
