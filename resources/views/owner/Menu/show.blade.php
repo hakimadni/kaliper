@@ -117,8 +117,9 @@ Menu Detail
     var customValue = {{ $product->harga }};
     $("#subtotal").text(formatCurrency(customValue));
     
-    function sub() {
+    function sub() { 
       var quantity = $("#Quantity").val(); // Get quantity value
+       // Custom value to multiply with quantity
       var subtotal = quantity * customValue; // Calculate subtotal
       $("#subtotal").text(formatCurrency(subtotal)); // Update subtotal element
     }
@@ -126,12 +127,9 @@ Menu Detail
     // Increase quantity on plus button click
     $("#plus-btn").on("click", function() {
       var quantity = parseInt($("#Quantity").val()); // Get current quantity value
-      var stock = parseInt("{{ $product->stock }}"); // Get product stock value
-      if (quantity < stock) {
-        quantity++; // Increment quantity
-        $("#Quantity").val(quantity); // Update quantity input
-        sub(); // Trigger input event to update subtotal
-      }
+      quantity++; // Increment quantity
+      $("#Quantity").val(quantity); // Update quantity input
+      sub(); // Trigger input event to update subtotal
     });
 
     // Decrease quantity on minus button click
@@ -140,10 +138,9 @@ Menu Detail
       if (quantity > 1) {
         quantity--; // Decrement quantity
         $("#Quantity").val(quantity); // Update quantity input
-        sub(); // Trigger input event to update subtotal
+        sub() // Trigger input event to update subtotal
       }
     });
-
 
     $('.add-to-cart').click(function() {
       event.preventDefault();

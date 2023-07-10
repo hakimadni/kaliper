@@ -18,18 +18,18 @@
 					<!--begin::Wrapper-->
 					<div class="w-lg-600px bg-white-transparent-75 rounded shadow-sm p-10 p-lg-15 mx-auto">
 						<!--begin::Form-->
-						<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
+						<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" action="{{ route('register.store') }}" method="POST">
+							@csrf
 							<!--begin::Heading-->
 							<div class="mb-10 text-center">
 								<!--begin::Title-->
 								<h1 class="text-dark mb-3">Create an Account</h1>
 								<!--end::Title-->
-								
 							</div>
 							<!--end::Heading-->
 							<!--begin::Action-->
-							<a type="button" class="btn btn-light-primary fw-bolder w-100 mb-10" href="{{route('redirect')}}">
-                            <img alt="Logo" src="{{asset('media/svg/brand-logos/google-icon.svg')}}" class="h-20px me-3" />Log in with Google</a>
+							<a type="button" class="btn btn-light-primary fw-bolder w-100 mb-10" href="{{ route('redirect') }}">
+								<img alt="Logo" src="{{ asset('media/svg/brand-logos/google-icon.svg') }}" class="h-20px me-3" />Log in with Google</a>
 							<!--end::Action-->
 							<!--begin::Separator-->
 							<div class="d-flex align-items-center mb-10">
@@ -43,13 +43,13 @@
 								<!--begin::Col-->
 								<div class="col-xl-6">
 									<label class="form-label fw-bolder text-dark fs-6">First Name</label>
-									<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first-name" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first_name" autocomplete="off" />
 								</div>
 								<!--end::Col-->
 								<!--begin::Col-->
 								<div class="col-xl-6">
 									<label class="form-label fw-bolder text-dark fs-6">Last Name</label>
-									<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last-name" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last_name" autocomplete="off" />
 								</div>
 								<!--end::Col-->
 							</div>
@@ -94,7 +94,7 @@
 							<!--begin::Input group-->
 							<div class="fv-row mb-5">
 								<label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-								<input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
+								<input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation" autocomplete="off" />
 							</div>
 							<!--end::Input group-->
 							<!--begin::Input group-->
@@ -108,7 +108,7 @@
 							<!--end::Input group-->
 							<!--begin::Actions-->
 							<div class="text-center">
-								<button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+								<button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
 									<span class="indicator-label">Submit</span>
 									<span class="indicator-progress">Please wait...
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -117,11 +117,12 @@
 							<!--end::Actions-->
 						</form>
 						<!--end::Form-->
-                        <!--begin::Link-->
-								<div class="text-dark text-center fw-bold fs-4 pt-10">Already have an account?
-                                    <a href="/login" class="link-primary fw-bolder">Sign in here</a></div>
-                                    <!--end::Link-->
-					</div>
+						<!--begin::Link-->
+						<div class="text-dark text-center fw-bold fs-4 pt-10">Already have an account?
+							<a href="/login" class="link-primary fw-bolder">Sign in here</a>
+						</div>
+						<!--end::Link-->
+					</div>					
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Content-->

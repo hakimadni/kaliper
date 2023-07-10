@@ -5,55 +5,47 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-
 class TransactionStatusUpdated extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $status;
+    public $transactionCode;
+    public $payment;
+    public $nama;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($status, $transactionCode, $payment, $nama)
     {
-        //
+        $this->status = $status;
+        $this->transactionCode = $transactionCode;
+        $this->payment = $payment;
+        $this->nama = $nama;
     }
 
     /**
-     * Get the message envelope.
+     * Build the message.
      *
-     * @return \Illuminate\Mail\Mailables\Envelope
+     * @return $this
      */
-    public function envelope()
+    public function build()
     {
-        return new Envelope(
-            subject: 'Transaction Status Updated',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
+        return $this->view('emails.trx-success')
+            ->from([
+                'address' => env('MAIL_FROM_ADDRESS'), 
+                'name' => 'Kopi Kaliper'
+            ])
+            ->with([
+                'nama' => $this->nama,
+                'status' => $this->status,
+                'transactionCode' => $this->transactionCode,
+                'payment' => $this->payment,
+            ])
+            ->subject('Transaction Status Updated');
     }
 }

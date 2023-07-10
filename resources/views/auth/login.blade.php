@@ -18,15 +18,13 @@
             <!--begin::Wrapper-->
             <div class="w-lg-500px bg-white-transparent-75 rounded shadow-sm p-10 p-lg-15 mx-auto z-index-2">
                 <!--begin::Form-->
-                <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#">
+                <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{ route('login.store') }}" method="POST">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
                         <h1 class="text-dark mb-3">Log In to Kaliper</h1>
                         <!--end::Title-->
-                        <!--begin::Link-->
-                        
-                        <!--end::Link-->
                     </div>
                     <!--begin::Heading-->
                     <!--begin::Input group-->
@@ -35,7 +33,7 @@
                         <label class="form-label fs-6 fw-bolder text-dark">Email</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="email" name="email" autocomplete="off" required />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -52,7 +50,7 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" required />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -69,8 +67,8 @@
                         <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
                         <!--end::Separator-->
                         <!--begin::Google link-->
-                        <a href="{{route('redirect')}} " class="btn btn-flex flex-center btn-light text-dark btn-lg w-100 mb-5">
-                        <img alt="Logo" src="{{asset('media/svg/brand-logos/google-icon.svg')}}" class="h-20px me-3" />Continue with Google</a>
+                        <a href="{{ route('redirect') }}" class="btn btn-flex flex-center btn-light text-dark btn-lg w-100 mb-5">
+                            <img alt="Logo" src="{{ asset('media/svg/brand-logos/google-icon.svg') }}" class="h-20px me-3" />Continue with Google</a>
                         <!--end::Google link-->
                         <div class="text-dark fw-bold fs-4">New Here?
                             <a href="/register" class="link-primary fw-bolder">Create an Account</a></div>
@@ -79,6 +77,7 @@
                 </form>
                 <!--end::Form-->
             </div>
+            
             <!--end::Wrapper-->
         </div>
         <!--end::Content-->

@@ -4,7 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\Order;
+use App\Models\CartOrder;
+use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionStatusUpdated;
+
 
 class WebhookController extends Controller
 {
@@ -44,7 +51,6 @@ class WebhookController extends Controller
 
 
         if ($status === 'success') {
-            
             if($transaction) {
                 $transaction->update([
                     'status_id' => 1,
@@ -52,15 +58,21 @@ class WebhookController extends Controller
                     'updated_at' => $currentDateTime
                 ]);
             }
+            $nama = $transaction->user->name;
+            try {
+                Mail::to($transaction->user->email)->send(new TransactionStatusUpdated($status, $transactionCode, $payment, $nama));
 
+            } catch (\Throwable $th) {
+                throw $th;
+            }
             // create a new order
             $order = new Order;
             $order->user_id = $transaction->user_id;
             $order->transaction_id = $transaction->id;
             $order->save();
 
-            $cartItems = Cart::where('user_id', $customer->id)->get();
-
+            $cartItems = Cart::where('user_id', $transaction->user_id)->get();
+            
             foreach ($cartItems as $cartItem) {
                 $cartOrder = new CartOrder();
                 $cartOrder->order_id = $order->id;
@@ -70,8 +82,17 @@ class WebhookController extends Controller
                 $cartOrder->iced = $cartItem->iced;
                 $cartOrder->save();
                 
+                // Update the stock column in the Product table
+                $product = Product::where('id', $cartItem->product_id)->first();
+                if ($product) {
+                    $product->stock -= $cartItem->qty;
+                    $product->save();
+                }
+
                 $cartItem->delete();
             }
+
+            
             
         }else if($status === 'failure'){
             if($transaction) {

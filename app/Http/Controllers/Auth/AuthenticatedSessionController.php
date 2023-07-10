@@ -47,7 +47,12 @@ class AuthenticatedSessionController extends Controller
         
                 
                 \auth()->login($create, true);
-                return redirect()->route('dashboard');
+                if ($user->role == 1)
+                {
+                    return redirect()->route('owner.dashboard');
+                }else{
+                    return redirect()->route('dashboard');
+                }
             }
 
         } catch (\Exception $e) {
@@ -69,13 +74,16 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+    public function store(LoginRequest $request)
+{
+    $credentials = $request->only('email', 'password');
 
+    if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
+        return response()->json(['success' => true]);
+    }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+    return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
     /**

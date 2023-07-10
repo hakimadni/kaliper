@@ -9,10 +9,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Operationhour;
+use App\Models\Transaction;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        $user_id = Auth::id();
+        $Trx = Transaction::where('user_id', $user_id)->where('status_id', 1)->get();
+        $totalAmount = $Trx->sum('amount') /1000;
+        $hour = Operationhour::get();
+        return view('user.dashboard', compact('totalAmount','hour'));
+    }
     /**
      * Display the user's profile form.
      */

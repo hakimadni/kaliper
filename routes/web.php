@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\TrxController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OwnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -24,16 +25,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::resources([
         'menu' => MenuController::class,
         'order' => OrderController::class,
         'trx' => TrxController::class,
     ]);
+    
     Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/order/updatestat', [OrderController::class, 'updateStatus'])->name('order.updateStatus');
@@ -41,14 +39,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/delete', [CartController::class, 'deleteCartItem'])->name('cart.delete');
     Route::get('transaction', [TrxController::class, 'store'])->name('member.transaction.store');
     Route::get('transaction/storeagain/{code}', [TrxController::class, 'storeagain'])->name('member.transaction.storeagain');
-
+    Route::get('/dashboard', [ProfileController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/save', [ProfileController::class, 'save'])->name('profile.save');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/addashboard', [OwnerController::class, 'index'])->name('owner.dashboard');
+    Route::get('/admenu', [OwnerController::class, 'menu'])->name('owner.menu');
+    Route::get('/adtrx', [OwnerController::class, 'trx'])->name('owner.trx');
+
 });
 Route::get('/ty', function () {
-    return view('thank you');
+    return view('emails.trx-success');
 });
 
 Route::get('/auth/redirect', [AuthenticatedSessionController::class, 'redirectToProvider'])->name('redirect');

@@ -65,6 +65,7 @@
 		<!--begin::Page Vendors Javascript(used by this page)-->
 		<link href="{{asset('/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css"/>
 		<script src="{{asset('/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+		
 		<!--end::Page Vendors Javascript-->
 		<!--begin::Page Custom Javascript(used by this page)-->
 		<script src="{{asset('/js/custom/apps/customers/list/export.js')}}"></script>

@@ -36,41 +36,57 @@ Menu
     </div>
   </div>
   <div class="card-body">
-    @foreach($categories as $category)
+      @foreach($categories as $category)
 
-    <h2 class="mb-5">{{ $category->name }}</h2>
-    {{-- <ul>
-        @foreach($productsByCategory[$category->id] as $product)
-            <li>{{ $product->name }}</li>
-        @endforeach
-    </ul> --}}
-    <div class="row row-cols-2 row-cols-md-5 row-cols-lg-6">
-      @foreach($productsByCategory[$category->id] as $product)
-      <div class="col mb-4 mh-200px mw-200px">
-          <a href="/menu/{{ $product->id }}">
-              <div class="card position-relative mw-150px mh-150px mw-lg-200px mh-lg-200px">
-                <div class="mw-150px mh-150px mw-lg-200px mh-lg-200px rounded"  style="position: relative; overflow: hidden;">
-                    <img class="img-fluid"
-                    src="{{ asset('storage/' . $product->image) }}" 
-                    alt="">
-                </div>
-                  <div class="card-img-overlay d-flex align-items-end">
-                    <div class="bottom-10 w-100 text-center">
-                      <h5 class="card-title text-light">{{ $product->name }}</h5>
-                      <p class="card-text fs-6 btn-light rounded">Rp. {{number_format($product->harga) }}</p>
+        <h2 class="mb-5">{{ $category->name }}</h2>
+        {{-- <ul>
+            @foreach($productsByCategory[$category->id] as $product)
+                <li>{{ $product->name }}</li>
+            @endforeach
+        </ul> --}}
+        <div class="row row-cols-2 row-cols-md-5 row-cols-lg-6">
+          @foreach($productsByCategory[$category->id] as $product)
+          <div class="col mb-4 mh-200px mw-200px">
+            @if ($product->stock != 0)
+              <a href="/menu/{{ $product->id }}">
+                <div class="card position-relative mw-150px mh-150px mw-lg-200px mh-lg-200px">
+                  <div class="mw-150px mh-150px mw-lg-200px mh-lg-200px rounded"  style="position: relative; overflow: hidden;">
+                      <img class="img-fluid"
+                      src="{{ asset('storage/' . $product->image) }}" 
+                      alt="">
+                  </div>
+                    <div class="card-img-overlay d-flex align-items-end">
+                      <div class="bottom-10 w-100 text-center">
+                        <h5 class="card-title text-light">{{ $product->name }}</h5>
+                        <p class="card-text fs-6 btn-light rounded">Rp. {{number_format($product->harga) }}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-          </a>
-      </div>
+              </a>
+            @else
+              <a href="/menu">
+                <div class="card position-relative mw-150px mh-150px mw-lg-200px mh-lg-200px">
+                  <div class="mw-150px mh-150px mw-lg-200px mh-lg-200px rounded"  style="position: relative; overflow: hidden;">
+                      <img class="img-fluid"
+                      src="{{ asset('storage/' . $product->image) }}" 
+                      alt="">
+                  </div>
+                    <div class="card-img-overlay d-flex align-items-end bg-dark" style="--bs-bg-opacity: .5;">
+                      <div class="bottom-10 w-100 text-center">
+                        <h5 class="card-title text-light">{{ $product->name }}</h5>
+                        <p class="card-text fs-6 btn-light rounded">Out of Stock</p>
+                      </div>
+                    </div>
+                  </div>
+              </a>
+            @endif
+              
+          </div>
+          @endforeach
+        </div>
       @endforeach
-    </div>
-@endforeach
+    
   </div>
 </div>
 
-
-
-  
-  
 @endsection

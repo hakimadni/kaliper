@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>@yield('title') Kaliper</title>
-
+  <link rel="shortcut icon" href="{{asset('media/loho.png')}}" />
   {{-- Fonts --}}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
@@ -51,6 +52,7 @@
 
 <!-- Template JS File -->
 <script src="{{asset('js/scripts.js')}}"></script>
+<script src="{{asset('js/custom/authentication/sign-up/general.js')}}"></script>
 <script src="{{asset('js/custom/authentication/sign-in/general.js')}}"></script>
 </body>
 </html>
